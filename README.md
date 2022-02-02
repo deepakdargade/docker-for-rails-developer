@@ -41,3 +41,4 @@ docker images
 docker run -p 3000:3000 a1df0eddba18 bin/rails s -b 0.0.0.0
 ```
 9. And we saw it running in a browser on http://localhost:3000.
+
