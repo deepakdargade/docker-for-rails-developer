@@ -69,3 +69,22 @@ RUN bundle install
 ```
 LABEL maintainer="rob@DockerForRailsDevelopers.com"
 ```
+
+1. We introduced the docker-compose.yml and its format.
+2. We created our own docker-compose.yml for our Rails app, including a locally mounted volume to allow live editing of local files.
+3. We saw how to spin up our entire app and start the Rails server by using the command:
+    $ docker-compose up
+4. We learned various commands for managing our app with Compose:
+• List running containers
+        $ docker-compose ps
+• Manage container life cycle
+        $ docker-compose [start|stop|kill|restart|pause|unpause|rm] \
+                         <service name>
+• View the logs
+        $ docker-compose logs [-f] <service name>
+• Run a one-off command in a new, throwaway container
+        $ docker-compose run --rm <service name> <some command>
+• Run a one-off command in an existing container
+        $ docker-compose exec <service name> <some command>
+• Rebuild an image
+        $ docker-compose build <service name>
