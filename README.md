@@ -96,3 +96,11 @@ to it from a separate container) by starting a new container to run redis-cli.
 4. We discussed the networking features Docker provides, and how Compose facilitates containers talking to each other.
 5. We connected our Rails app to the Redis server, making it store and increment a value, which we then retrieved and displayed.
 6. Finally, we saw that our trusty docker-compose up just works, and will start up both the Rails and Redis servers in one go.
+
+
+• We started up a Postgres server in a container using Compose.
+• We verified that the Postgres server was running by connecting with the Postgres client from a separate container.
+• We configured our Rails app to talk to Postgres by installing the Postgres gem, modifying our database.yml file, and running the Rake task to create the databases.
+• We put our new database through its paces by generating a scaffold, running migrations, and inserting, deleting, and updating records.
+• We discussed why it’s a good idea to decouple our database container from data we want to persist.
+• Finally, we used a named volume to store our data separately, allowing us to manage its life cycle independently of the container.
