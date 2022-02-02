@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-  
   web:
     build: .
     ports:
@@ -11,6 +10,21 @@ services:
     env_file:
       - .env/development/web
       - .env/development/database
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpack_dev_server
+  
+  webpack_dev_server:
+    build: .
+    command: ./bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env/development/web
+      - .env/development/database
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
   
   redis:
     image: redis

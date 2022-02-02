@@ -104,3 +104,22 @@ to it from a separate container) by starting a new container to run redis-cli.
 • We put our new database through its paces by generating a scaffold, running migrations, and inserting, deleting, and updating records.
 • We discussed why it’s a good idea to decouple our database container from data we want to persist.
 • Finally, we used a named volume to store our data separately, allowing us to manage its life cycle independently of the container.
+
+
+We installed Yarn and a more up-to-date version of Node to meet Webpacker’s requirements.
+2. We installed the Webpacker gem.
+3. We added a new service to our docker-compose.yml file that runs the web-
+pack_dev_server to automatically compile our Webpacker JavaScript assets. 4. We created a Hello World React application to verify everything was con-
+figured correctly to compile and run a React app.
+Now that our app is up and running in all its glory, next we’ll turn our attention to setting up and running our tests in a Dockerized environment.
+
+
+======
+
+You need to allow webpack-dev-server host as allowed origin for connect-src.
+This can be done in Rails 5.2+ for development environment in the CSP initializer
+config/initializers/content_security_policy.rb with a snippet like this:
+policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
+Webpacker successfully installed 🎉 🍰
+
+
