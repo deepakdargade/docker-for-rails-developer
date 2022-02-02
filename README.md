@@ -41,4 +41,31 @@ docker images
 docker run -p 3000:3000 a1df0eddba18 bin/rails s -b 0.0.0.0
 ```
 9. And we saw it running in a browser on http://localhost:3000.
-
+10. We saw how to name and version our images by giving them tags, either after they’re built:
+```
+$ docker tag a1df0eddba18 railsapp
+```
+or at build time (here setting two tags):
+```
+$ docker build -t railsapp -t railsapp:1.0 .
+```
+11. We added a default command to our image using the CMD instruction:
+```
+CMD ["bin/rails", "s", "-b", "0.0.0.0"]
+```
+12. We sped up our image builds by using a .dockerignore to prevent unnecessary files from being sent to the Docker daemon as part of our build context.
+13. We ensured that we always use up-to-date package repository information when altering the packages we install by combining apt-get update and apt- get install into a single RUN instruction:
+```
+RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
+    nodejs
+```
+14. We prevented file changes from causing our gems to be rebuilt by copying our Gemfiles earlier in our Dockerfile so they could be cached separately:
+```
+COPY Gemfile* /usr/src/app/
+WORKDIR /usr/src/app
+RUN bundle install
+```
+15. Finally, we indicated who was responsible for our image by setting a maintainer with the LABEL instruction:
+```
+LABEL maintainer="rob@DockerForRailsDevelopers.com"
+```
