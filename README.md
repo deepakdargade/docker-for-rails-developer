@@ -88,3 +88,11 @@ LABEL maintainer="rob@DockerForRailsDevelopers.com"
         $ docker-compose exec <service name> <some command>
 • Rebuild an image
         $ docker-compose build <service name>
+
+1. We started a Redis server in a container, using docker run. We covered two new options: --name for giving containers a human-friendly name, and -d for running a container in detached mode.
+2. We added a separate service in Compose for running the Redis server.
+3. We verified that the Redis server was running (and that we could connect
+to it from a separate container) by starting a new container to run redis-cli.
+4. We discussed the networking features Docker provides, and how Compose facilitates containers talking to each other.
+5. We connected our Rails app to the Redis server, making it store and increment a value, which we then retrieved and displayed.
+6. Finally, we saw that our trusty docker-compose up just works, and will start up both the Rails and Redis servers in one go.
