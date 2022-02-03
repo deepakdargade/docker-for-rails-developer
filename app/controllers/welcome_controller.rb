@@ -4,5 +4,6 @@ class WelcomeController < ApplicationController
     redis.incr('page hits')
 
     @page_hits = redis.get('page hits')
+    # byebug
   end
 end

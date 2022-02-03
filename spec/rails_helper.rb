@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require_relative './support/capybara.rb'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -61,4 +62,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+  config.before(:each, type: :system, js: true) do
+    driven_by :headless_selenium_chrome_in_container
+    Capybara.server_host = "0.0.0.0"
+    Capybara.server_port = 4000
+    Capybara.app_host = 'http://web:4000'
+  end
 end
